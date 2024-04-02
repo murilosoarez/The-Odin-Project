@@ -1,0 +1,218 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex; 
+    flex-direction: column;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+dialog {
+    align-self: center;
+}
+
+.Main.Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    gap: 3%;
+    background: rgb(239, 239, 239);
+}
+
+.Main.Container .Left.Session {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: wheat;
+    padding: 2%;
+    gap: 50px;
+    border-radius: 25px;
+}
+
+.Main.Container .Left.Session h1 {
+    display: flex;
+    justify-content: center; 
+    font-weight: lighter;
+    color: white;
+    background: rgb(79, 57, 57);
+    padding: 20px;
+}
+
+.Main.Container .Left.Session button {
+    width: 50px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: 20px;
+    border-radius: 25px;
+    color: wheat;
+    border: 1px solid rgb(79, 57, 57);
+    background:  rgb(144, 115, 88);
+}
+
+.Main.Container .Bookcase {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 2%;
+    height: 50vh;
+    width: 50vw;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    gap: 2%;
+    border-radius: 25px;
+    box-shadow: 10px 10px 10px black;
+    background: rgb(79, 57, 57);
+    border: 10px solid rgb(144, 115, 88);
+}
+
+.Main.Container .Bookcase .Book {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 20px;
+    height: 15vh;
+    color: rgb(79, 57, 57);;
+    border-radius: 25px;
+    background: wheat;
+}
+
+.Main.Container .Bookcase .Book .Title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    height: 30%;
+    background: rgb(236, 236, 236);
+    background: rgb(79, 57, 57);
+    color: wheat;
+}
+
+.Main.Container .Bookcase .Book .Close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    top: -5px;
+    border-radius: 50px;
+    padding: 5px;
+    color: wheat;
+    border: 1px solid rgb(79, 57, 57);
+    background:  rgb(144, 115, 88);
+}
+
+
+#dialogue-box {
+    display: none;
+    position: absolute;
+    align-self: center;
+    top: 25%;
+    height: 50%;
+    width: 30%;
+    box-shadow: 5px 5px 10px black;
+    border: 3px solid rgb(79, 57, 57);
+}
+
+dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    overflow: hidden;
+    background: wheat;
+    width: 100%;
+    height: 100%;
+}
+
+dialog > div:nth-child(1) {
+    display: flex;
+    gap: 70px;
+    padding: 10px;
+    font-weight: lighter;
+    color: wheat;
+    background: rgb(79, 57, 57);
+}
+
+dialog > div:nth-child(1) > button {
+    width: 50px;
+    font-weight: bolder;
+    color: wheat;
+    border: 1px solid rgb(79, 57, 57);
+    background:  rgb(144, 115, 88);
+}
+
+#dialogue-box form {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background: rgb(79, 57, 57);
+    color: wheat;
+    font-weight: bolder;
+    padding: 5%;
+    gap: 30px;
+}
+
+#dialogue-box form > session > #submit {
+    align-self: center;
+    font-weight: bolder;
+    width: auto;
+    height: 50px;
+}
+
+#dialogue-box form > session > input {
+    padding: 2%;
+    font-size: 15px;
+}
+
+@media (max-width: 500px) {
+
+    .Main.Container {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .Main.Container .Bookcase {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 5%;
+        padding: 20px;
+        width: 80vw;
+    }
+
+    #dialogue-box {
+        width: 50vw;
+        display: none;
+    }
+
+    #dialogue-box > dialog > div  {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2%;
+      
+    }
+}
+ 
+/* CSS EVENTS */
+
+.Main.Container .Left.Session button:hover, 
+dialog > div:nth-child(1) > button:hover, 
+.Main.Container .Bookcase .Book .Close:hover 
+{
+    background: grey;
+    color: white;
+    cursor: pointer;
+}

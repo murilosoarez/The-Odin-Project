@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Library</title>
+    <link rel='stylesheet' href='styles.css'>
+    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class='Main Container' id='main-container'>
+
+        <div class='Left Session'>
+            <h1> Personal Library </h1>
+            <button id='btn'>+</button>
+        </div>
+
+        <div class="Bookcase" id='bookcase'></div>
+
+    </div>
+    <div id='dialogue-box'>
+        <dialog open>
+            <div>
+                <h1> Enter your book!</h1>
+                <button id='close'>X</button>
+            </div>
+            <form>
+                <session>
+                    <label for='name'>Name: </label>
+                    <input type='text' name='name' id='name'>
+                </session>
+                <session>
+                    <label for='author'>Author: </label>
+                    <input type='text' name='author' id='author'>
+                </session>
+                <session>
+                    <label for='pages'>Pages: </label>
+                    <input type='text' name='pages' id='pages'>
+                </session>
+                <session>
+                    <label for='checkbox'> Read? </label>
+                    <input type='checkbox' name='checkbox' id='checkbox'>
+                </session>
+                <session>
+                    <input type='submit' id='submit'>
+                </session>
+            </form>
+        </dialog>
+    </div>
+</body>
+
+</html>

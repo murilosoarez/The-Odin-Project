@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Main.Container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.Main.Container .Tic.Tac.Toe {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 50%;
+    height: 50%;
+    border: 5px solid black;
+}
+
+.Main.Container .Tic.Tac.Toe > section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red;
+}
+
+.Main.Container .Tic.Tac.Toe > section > p {
+    font-size: 55px;
+    font-weight: bolder;
+}
+
+.Main.Container .Tic.Tac.Toe > section:hover {
+    background: rgb(239, 239, 239);
+    cursor: pointer;
+}
+

@@ -1,0 +1,129 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/grid.jpg') ;
+    height: 100vh;
+    width: 100vw;
+    padding: 5%;
+    gap: 2%;
+    position: relative;
+}
+
+.Title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: rgb(43, 43, 43);
+    color: white;
+    box-shadow: 5px 5px rgb(98, 245, 255);
+}
+
+.Game {
+    display: flex;
+    position: relative;
+    width: 90%;
+    height: 100%;
+}
+
+.Game .Player.Side,
+.Game .Opponent.Side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    flex: 0.5;
+    border: 2px solid rgb(98, 245, 255);
+    background: rgb(43, 43, 43);
+}
+
+.Game .Play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 40%;
+    font-size: 150px;
+    border: 2px solid black;
+    border: 2px solid rgb(98, 245, 255);
+}
+
+.Game .Player.Side .Score,
+.Game .Opponent.Side .Score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    width: 20%;
+    height: 10%;
+    font-size: 25px;
+    font-weight: bolder;
+    border: 2px solid rgb(98, 245, 255);
+    color: white;
+}
+
+.Result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 30px;
+    width: 50%;
+    height: 10%;
+    bottom: 12%;
+    border: 1px solid black;
+    background: rgb(37, 240, 255);
+}
+
+dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 50%;
+    bottom: 0%;
+    top: 25%;
+    margin: 0 auto;
+    background: rgb(40, 40, 40);
+    border: 2px solid rgb(98, 245, 255);
+    color: white;
+}
+
+dialog > .Options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+    gap: 2%;
+    width: 90%;
+    height: 70%;
+    border: 2px solid black;
+    border: 2px solid rgb(98, 245, 255);
+}
+
+dialog > .Options > button {
+    width: 200px;
+    height: 200px;
+    font-size: 50px;
+    background: none;
+    border: 2px solid rgb(98, 245, 255);
+}
+
+
+dialog > .Options > button:hover {
+    background: black;
+    cursor: pointer;
+}
