@@ -7,6 +7,10 @@
 
 <p> This is the collection of all the projects i made while following the course! </p>
 
- <img  src = "https://avatars.githubusercontent.com/u/4441966?s=48&v=4" alt = 'Odin Project logo'>
- 
+<div style = 'display: flex; align-items: center; justify-content: center;gap: 5%;'>
+    <img  src = "https://avatars.githubusercontent.com/u/4441966?s=48&v=4" alt = 'Odin Project logo'>
+    <span><a href = "#">Live</a>
+</div>
+
+
 
