@@ -1,113 +1,91 @@
-/*
-
-Preciso de três funções:
-
--> Gameboard (vai controlar o array e o gameboard)
--> No gameboard eu preciso:
-    Criar o gameboard
-    Pegar o gameboard
-    Definir se lacuna está vazia
--> Game (vai preencher as colunas)
--> User (vai armazenar as informações)
-*/
 
 function Gameboard() {
 
-    let board = ['', '', '',
-                 '', '', '',
-                 '', '', '']
+    const createGameboard = (function () {
+        return [[''], [''], [''],
+        [''], [''], [''],
+        [''], [''], ['']]
+    })();
 
-    const getBoard = () => board
-    
-    const getWinninBoard = () =>  [[[0], [3], [6]], [[1], [4], [7]], [[2], [5], [8]], [[0], [1], [2]], [[3], [4], [5]], [[6], [7], [8]], [[0], [4], [8]], [[6], [4], [2]]]
+    const winningOutcomes = (function () {
+        return [[[0], [3], [6]], [[1], [4], [7]], [[2], [5], [8]], [[0], [1], [2]], [[3], [4], [5]], [[6], [7], [8]], [[0], [4], [8]], [[6], [4], [2]]]
+    })()
 
-    const getFullBoard = () => {
-        board = getBoard()
-        let fullBoard = 0
-        board.forEach((cell) => {
-            if (cell !== '') { fullBoard += 1}
-        })
-        return fullBoard
-    }
-    
-    
-    return { getBoard  , getWinninBoard , getFullBoard}
-
+    return { createGameboard, winningOutcomes }
 }
+
 
 function Game() {
 
-    const randomic = () => { return Math.floor(Math.random() * 9)}
-
-    let user = User()
+    // Inicializa o game
     let gameboard = Gameboard()
-    let board = gameboard.getBoard()
+    let board = gameboard.createGameboard
+    let winning = gameboard.winningOutcomes
 
+    let currentPlayer = 'O'
+    let user = User(currentPlayer)
     
-    const checkWin = () => {
-        
-        let winningP = gameboard.getWinninBoard()
-       
-        for (i = 0; i < winningP.length; i ++) {
+    let counter = 0
+    let spots = 0
+
+    while (true) {
+
+
+        while (true) {
+
+            let random = Math.floor(Math.random() * 9)
             
-                for (checkBoard = 0; checkBoard < board.length; checkBoard ++) {
-    
-                    if (checkBoard == winningP[i][0][0]) {
-                        var board1 = board[checkBoard]
-                    }
-    
-                    if (checkBoard == winningP[i][1][0]) {
-                        var board2 = board[checkBoard]
-                    }
-    
-                    if (checkBoard == winningP[i][2][0]) {
-                        var board3 = board[checkBoard]
-                    }
-                    
-                    if (board1 !== '' && board2 !== '' && board3 !== '') {
-                        if (board1 == board2 && board2 == board3) {
-                            return true 
-                        }
+            if (board[random] == '') {
+                board[random] = user.getPlayer(currentPlayer)
+                spots = spots + 1
+                break
+            }
+        }
+        console.log(board)
+
+        const findWinner = () => {
+            for (i = 0; i < winning.length; i++) {
+                for (q = 0; q < 3; q++) {
+                    let index = winning[i][q][0]
+                    if (board[index][0] == currentPlayer[0]) {
+                        counter++
                     }
                 }
+                if (counter > 2) {
+                    console.log(`${currentPlayer} won! ${counter}`)
+                    return true
+                }
+                counter = 0
             }
-            
         }
-        console.log(checkWin())
-    
-        
-    while (true) {
-        board[randomic()] = user.player()
-        user.switchPlay()
-        checkWin()
-        
-        if (checkWin() == true) {
-            console.log(board)
-            console.log(user.player() + ' won!')
+
+        if (findWinner()) { break }
+        if (spots > 8) { 
+            console.log('Its a tie!')
             break
         }
-        
-        if (gameboard.getFullBoard() == 9) {
-            console.log('Its a tie')
-            break
-        }
+
+        currentPlayer = user.switchPlayer(currentPlayer)
     }
-    
-}    
 
-
-
+}
 
 function User() {
 
-    let play = 'X'
-    const player = () => play
-
-    const switchPlay = () => {
-        play = play === 'X' ? 'O' : 'X';
+    const getPlayer = (player) => { return player }
+    const switchPlayer = (player) => {
+        if (player === 'X') {
+            return 'O'
+        }
+        else {
+            return 'X'
+        }
     }
 
-    return { player , switchPlay }
+    return { getPlayer, switchPlayer }
 }
 
 Game()
+
+
+

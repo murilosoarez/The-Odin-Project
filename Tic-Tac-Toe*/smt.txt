@@ -1,0 +1,7 @@
+
+const Gameboard = (function () {
+    const sections = () => [[], [], [], [], [], [], [], [], []]
+    return {sections};
+  })();
+
+let board = Gameboard.sections()
