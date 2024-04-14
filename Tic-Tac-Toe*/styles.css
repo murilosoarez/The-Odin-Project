@@ -5,6 +5,10 @@
 }
 
 .Main.Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
 }
@@ -13,7 +17,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 50%;
-    height: 50%;
+    height: 60%;
     border: 5px solid black;
 }
 
@@ -34,3 +38,39 @@
     cursor: pointer;
 }
 
+
+dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+    border: 5px solid black;
+}
+
+
+dialog > .Player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    border: 2px solid black;
+    width: 150px;
+    height: 150px;
+}
+
+.Main.Container .Result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    margin-top: 50px;
+    width: 500px;
+    height: 100px;
+}
+
+.Result > p {
+    font-size: 25px;
+}
