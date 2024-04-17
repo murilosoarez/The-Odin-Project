@@ -38,19 +38,27 @@ function Game() {
     const checkSections = (winning, board, player) => {
 
         let counter = 0
-        let winningCard
+        let winningCards = []
 
         for (i=0; i < winning.length; i ++) {
             for (q = 0; q < 3; q ++) {
                 let index = winning[i][q][0]
                 if (board[index].innerHTML == player) {
                     counter ++
-                    if (counter == 3) { return counter }
+                    winningCards.push(board[index])
+                    if (counter == 3) {
+                        winningCards.forEach((w) => {
+                            w.style.color = 'red'
+                        })
+                        return counter 
+                    }
                 }
             }
             counter = 0 
+            winningCards = []
         }
-
+        
+        
         return counter
 
     }
@@ -77,7 +85,6 @@ function Game() {
 
     const checkTies = (section) => {
         let spots = 0
-
         for (i=0; i < section.length; i++) {
             if (section[i].innerHTML !== '') {
                 spots ++
@@ -93,18 +100,23 @@ function Game() {
 function DOMInteraction() {
     
     let dialog = document.querySelector('dialog')
+    let main = document.querySelector('.Main')
     let players = document.querySelectorAll('.Player')
     let TicTacToe = document.querySelector('.Tic.Tac.Toe')
     
     let user = User()
     let currentPlayer
-
+    
     let game = Game()
+    
+    main.style.filter = 'blur(1px)'
+
     
     players.forEach((player) => {
         player.addEventListener('click', () => {
             currentPlayer = user.getPlayer(player.id)
             dialog.style.display = 'none'
+            main.style.filter = 'blur(0px)'
         })
     })
     
@@ -114,38 +126,46 @@ function DOMInteraction() {
     
     let section = document.querySelectorAll('section')
     let showResult = document.querySelector('.Result')
+    let refresh = document.querySelector('.Refresh')
 
     let result = false
     let tie = 0
 
     let counter
+    
     section.forEach((sect) => {
         sect.addEventListener('click', () => {
-            
-            if (result == false || result == undefined) {
-                sect.innerHTML = currentPlayer
-                tie = game.checkTies(section)            
-                counter = game.checkSections(winning, section, currentPlayer)
-                result = game.checkWin(counter)
+  
+            if (sect.innerHTML == '') {
+                if (result == false || result == undefined) {
+                    sect.innerHTML = currentPlayer
+                    tie = game.checkTies(section)            
+                    counter = game.checkSections(winning, section, currentPlayer)
+                    result = game.checkWin(counter)
+                }
+                
+                if (result) { game.finishGame(showResult, currentPlayer) } 
+                
+                if (result == false || result == undefined) {
+                    currentPlayer = user.switchPlayer(currentPlayer) 
+                    tie = game.checkTies(section)            
+                    game.opponentPlay(section, currentPlayer, tie)
+                    counter = game.checkSections(winning, section, currentPlayer)
+                    result = game.checkWin(counter)
+                }
+                
+                if (result) { game.finishGame(showResult, currentPlayer) } 
+                currentPlayer = user.switchPlayer(currentPlayer)
+                
+                if (result == undefined && tie > 8) {
+                    result = true
+                    game.finishGame(showResult, "No one ")
+                }
+
+                if (result) { refresh.style.display = 'flex'}
             }
             
-            if (result) { game.finishGame(showResult, currentPlayer) } 
-            
-            if (result == false || result == undefined) {
-                currentPlayer = user.switchPlayer(currentPlayer) 
-                tie = game.checkTies(section)            
-                game.opponentPlay(section, currentPlayer, tie)
-                counter = game.checkSections(winning, section, currentPlayer)
-                result = game.checkWin(counter)
-            }
-            
-            if (result) { game.finishGame(showResult, currentPlayer) } 
-            currentPlayer = user.switchPlayer(currentPlayer)
-            
-            if (result == undefined && tie > 8) {
-                result = true
-                game.finishGame(showResult, "No one ")
-            }
+            refresh.addEventListener('click', () => { window.location.reload() })
 
         })
     })
