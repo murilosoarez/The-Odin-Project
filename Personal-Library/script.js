@@ -1,3 +1,12 @@
+class Book {
+    constructor(name, author, pages, status) {
+        this.name = name 
+        this.author = author 
+        this.pages = pages 
+        this.status = status
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
     const mainContainer = document.getElementById('main-container')
@@ -19,15 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let name = document.getElementById('name').value
         let author = document.getElementById('author').value
         let pages = document.getElementById('pages').value
-        let checkbox = document.getElementById('checkbox').checked
+        let status = document.getElementById('checkbox').checked
         
-        library.push(
-            {'Title': name,
-            'Author': author,
-            'Pages': pages,
-            'Status': checkbox
-        }
-        )
+        let newBook = new Book(name, author, pages, status)
+        
+        library.push({
+            'Title': newBook.name,
+            'Author': newBook.author,
+            'Pages': newBook.pages,
+            'Status': newBook.status
+        })
         
         createNewBook(library, bookcase)
         
@@ -46,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })  
     
 })
+
+
 
 function createNewBook(array, bookcase) {
      
