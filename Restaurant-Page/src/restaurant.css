@@ -5,53 +5,363 @@ body {
 }
 
 html {
-    font-family: 'Arial'
+    --header-color: rgb(251, 251, 251);
+    --primary-color: #0058C1;
+    --secondary-color: rgb(44, 130, 90);
+    --third-color: rgb(255, 217, 0);
 }
 
-section {
+header {
+    background: var(--header-color);
+    color: white;
+    height: 8vh;
+    font-family: 'Josefin Sans';
+}
+
+header, nav {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 5px;
-}
-
-img {
-    width: 100%;
-    height: 100%;
-}
-
-header, nav, h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 5vh;
+    justify-content: space-around;
     gap: 50px;
 }
 
-.Content {
-    height: 100vh;
-    width: 100vw;
-}
-
-.Content > section {
-    border: 2px solid black;
-}
-
-.Content .Title {
-    height: 5vh;
-}
-
-.Content .Wrapper {
+header > .Title {
     display: flex;
-    height: 95vh; 
+    height: 100%;
+    font-size: 20px;
+    color: black;
 }
 
-.Content .Wrapper > section {
-    flex: 0.5;
-    border: 1px solid black;
+header .Title > h3 {
+    background: var(--third-color);
 }
 
-.Content .Wrapper .Text {
-    flex-direction: column;
-    font-size: 25px;
+header > .Title > h4 {
+    font-family: 'Courier New', Courier, monospace;
 }
+
+
+header > nav > button {
+    background: none;
+    border: none;
+    font-weight: bolder;
+    color: black;
+    font-size: 18px;
+}
+
+
+header > nav > button:hover {
+    cursor: pointer;
+    animation: zoom-in 15s linear;
+}
+
+
+/* MAIN CONTENT */
+.Main-Content {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: rgb(19, 76, 247);
+}
+
+    .Main-Content .Main-Section-One {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+        .Main-Section-One .Main-Title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
+
+            .Main-Title > h1 {
+                color: var(--third-color);
+                cursor: pointer;
+                font-family: 'Josefin Sans';
+                text-shadow: 2px 1px black;
+                font-size: 50px;
+            }
+
+            .Main-Title > h1:hover {
+                color: rgb(226, 150, 0);
+                cursor: pointer;
+            }
+
+            .Main-Title > h2 {
+                position: absolute;
+                bottom: 0px;
+                font-family: 'Cedarville Cursive';
+                color: white
+            }
+
+    .Main-Content .Main-Section-Two {
+        display: flex;
+        justify-content: center;
+        background: var(--header-color);
+        height: 80vh;
+    }
+
+        .Main-Section-Two .Content-Image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            height: 100%;
+        }
+
+            .Content-Image > img {
+                width: 90%;
+                height: 90%;
+            }
+
+        .Main-Section-Two .Content-Text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            height: 100%;
+            font-family: 'Josefin Sans';
+            border-left: 1px dotted black;
+        }
+        
+        .Content-Text > h3 {
+            text-align: center;
+            color: var(--secondary-color)
+        }
+        
+        .Content-Text .Toggler {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5%;
+            width: 90%;
+            height: 20%;
+            background: linear-gradient(var(--third-color), green);
+            box-shadow: 5px 5px black;
+        }
+        
+        .Content-Text .Toggler .Toggler-Image {
+            display: flex;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+            animation: zoomInOut 2s infinite;
+        }
+        
+        .Toggler-Image:hover {
+            cursor: pointer;
+        }
+        
+        .Content-Text .Toggle-Text {
+            display: flex;
+            justify-content: space-around;
+            width: 45%;
+        }
+
+            .Toggle-Text > p {
+                color: green
+            }
+
+
+            .Toggle-Text .Toggler-One {
+                color: black;
+            }
+                
+            .Toggler-One.Deact {
+                color: black;
+                opacity: 0;
+                top: 300px;
+            }
+
+            .Toggler-One.Act {
+                animation: fadeIn 0.3s forwards;
+                top: 300px;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    top: 300px;
+                }
+                to {
+                    opacity: 1;
+                    top: 350px;
+                }
+            }
+
+            @keyframes zoomInOut {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1);
+                    }
+            }
+
+            .Content-Text .Big-Text {
+                width: 50%;
+                padding: 50px;
+                background: linear-gradient(green, var(--primary-color));
+                color: white;
+                box-shadow: 5px 5px black;
+            }
+            
+            .Big-Text > p {
+                font-size: 18px;
+            }
+        
+
+
+
+
+
+/* MENU CONTENT */
+
+.Menu-Content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--third-color);
+    height: 100vh;
+}
+
+    .Menu-Content .Menu-Grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(6, 30%);
+        gap: 10px;
+        padding: 30px;
+        width: 80vw;
+        height: 80vh;
+        overflow: scroll;
+        background: white;
+        border-radius: 25px;
+    }
+
+        .Menu-Grid > div {
+            display: flex;
+            font-family: 'Josefin Sans';
+        }
+
+        .Menu-Grid > div .Menu-Sect-One {
+            display: flex;
+            justify-content: space-around;
+            gap: 5px;
+            width: 30%;
+            padding: 15px;
+            background: linear-gradient(green, var(--third-color));
+        }
+
+            .Menu-Sect-One > div > .Image-Section > img {
+                width: 500px;
+                height: 500px;
+            }
+            
+                .Image-Section > img {
+                    width: 100%;
+                    height: 100%;
+                    border: 2px solid white;
+                    border-radius: 25%;
+                }
+
+        .Menu-Grid > div .Menu-Sect-Two  {
+            font-weight: 100;
+            font-size: 18px;
+            height: 100%;
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            font-weight: bolder;
+        }
+
+            .Menu-Sect-Two .Title-Section {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .Menu-Sect-Two .Description-Section {
+                display: flex;
+                justify-content: center;
+                padding: 10px;
+            }
+
+                .Description-Section > p {
+                    font-size: 20px;
+                }
+
+
+
+
+
+
+
+.About-Content {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    width: 100vw;
+    height: 100vh;
+}
+
+    .About-Content > section {
+        font-family: 'Josefin Sans';
+    }
+
+    .About-Content .About-Section-One {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+        .About-Section-One img {
+            position: absolute;
+            top: 10%;
+            width: 300px;
+            height: 90%;
+        }
+
+    .About-Content .About-Section-Two {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }   
+
+        .About-Section-Two .About-Title > h1{
+            color: var(--secondary-color);
+            font-weight: bolder;
+            font-family: 'Cedarville Cursive';
+        }
+ 
+        .About-Section-Two .Contact-Section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+            .Contact-Section .Telephone-Section, .Email-Section {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+    
+    .About-Content .About-Section-Three , .About-Section-Four {
+            background: var(--primary-color);
+        }
+
+
+
+
+    
