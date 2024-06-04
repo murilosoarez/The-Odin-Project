@@ -1,0 +1,93 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 2%;
+    height: 5vh;
+    font-size: 25px;
+    background: red;
+}
+
+main {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: yellow;
+}
+
+.Side {
+    height: 100vh;
+    border: 2px solid black;
+}
+
+main > .Left.Side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 40vw;
+    border: 2px solid black;
+}
+
+    .Left.Side > .Panel {
+        display: grid;
+        align-content: center;
+        justify-content: space-around;
+        grid-template-columns: repeat(1, 90%);
+        grid-template-rows: repeat(5, 80px);
+        gap: 5px;
+        width: 85%;
+        height: 500px;
+        background: red;
+        border-radius: 10px;
+    }
+
+        .Panel > .Box {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: white;
+        }    
+
+            .Box > p:nth-child(1) {
+                font-size: 25px;
+                font-weight: bolder;
+            }
+
+    .Left.Side > .Button {
+        width: 85%;
+        height: 150px;
+        background: red;
+    }
+
+        .Button > button {
+            width: 100%;
+            height: 100%;
+        }
+
+main > .Right.Side {
+    width: 70vw;
+    background: green;
+}
+
+.Dialog {
+    display: none;
+}
+
+.Dialog.Open { 
+    display: flex;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    background: red;
+}
