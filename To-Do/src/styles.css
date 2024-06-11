@@ -32,20 +32,19 @@ main > .Left.Side {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 40vw;
+    width: 20vw;
     border: 2px solid black;
 }
 
     .Left.Side > .Panel {
         display: grid;
+        justify-content: center;
         align-content: center;
-        justify-content: space-around;
         grid-template-columns: repeat(1, 90%);
         grid-template-rows: repeat(5, 80px);
-        gap: 5px;
         width: 85%;
-        height: 500px;
-        background: red;
+        height: 50%;
+        gap: 20px;
         border-radius: 10px;
     }
 
@@ -61,6 +60,10 @@ main > .Left.Side {
                 font-weight: bolder;
             }
 
+            .Box:hover {
+                cursor: pointer
+            }
+
     .Left.Side > .Button {
         width: 85%;
         height: 150px;
@@ -72,10 +75,55 @@ main > .Left.Side {
             height: 100%;
         }
 
+    .Left.Side > .Projects {
+        background: none;
+    }
+
+        .Projects > .Title {
+            display: flex;
+            gap: 20px;
+        }
+
+        .Projects .List {
+            opacity: 0;
+            max-height: 0;
+        }
+
+        .Projects .List.Open {
+            animation: come-in 3s forwards;
+            max-height: 200px;
+            display: flex;
+        }
+
+        @keyframes come-in {
+            0% {
+                opacity: 0;
+                height: 0;
+            }
+            100% {
+                opacity: 1;
+                height: 150px;
+            }
+        }
+
+        .Projects .List > ul {
+            list-style: none;
+        }
+
 main > .Right.Side {
-    width: 70vw;
+    display: flex;
+    overflow: hidden;
+    resize: both;
     background: green;
+    width: 80vw
 }
+
+.Right.Side > div {
+        border: 2px solid red;
+        height: 85vh;
+        width: 1000px;
+        position: relative;
+    }
 
 .Dialog {
     display: none;
@@ -91,3 +139,11 @@ main > .Right.Side {
     display: flex;
     background: red;
 }
+
+    .Dialog.Open > button {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 5px;
+        right: 5px
+    }

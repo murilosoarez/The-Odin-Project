@@ -13,32 +13,48 @@
       <main>
         <section class = 'Left Side'>
           <div class = 'Panel'>
-  
             <button id = 'home' class = 'Box'>
               <p>+</p>
               <p>Home</p>
             </button>
-            <button class = 'Box'>
+            <button id = 'today' class = 'Box'>
               <p>+</p>
               <p>Today</p>
             </button>
-            <button class = 'Box'>
+            <button id = 'this-week' class = 'Box'>
               <p>+</p>
               <p>This Week</p>
             </button>
-            <button class = 'Box'>
-              <p>+</p>
-              <p>SHow all</p>
-            </button>
-            <button class = 'Box'>
+            <button id = 'favorites' class = 'Box'>
               <p>+</p>
               <p>Favorites</p>
             </button>
+          </div>
+          <div class = 'Projects'>
+            <div class = 'Title'>
+              <p> <strong>Projects</strong></p>
+              <button id = 'project-button'> ^ </button>
+            </div>
+            <div id = 'project-list' class = 'List'>
+              <ul>
+              </ul>
+            </div>
           </div>
           <div class = 'Button'><button>+</button></div>
         </section>
         <section class = 'Right Side'></section>
       </main>
-      <dialog class = 'Dialog' open>oi</dialog>
+      <dialog class = 'Dialog' open>
+        <button id = 'close-button'>X</button>
+        <form id = 'project-form'>
+            <section>
+                <label for = "name">Digite o nome do projeto: </label>
+                <input name = "name" type = "text">
+            </section>
+            <section>
+              <input id = 'project-submit' type = "submit">
+            </section>
+        </form>
+      </dialog>
 </body>
 </html>
