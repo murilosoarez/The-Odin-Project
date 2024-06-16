@@ -1,60 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do</title>
-    <script src = "./index.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-    <header>
-        <nav>To-Do</nav>
-      </header>
-      <main>
-        <section class = 'Left Side'>
-          <div class = 'Panel'>
-            <button id = 'home' class = 'Box'>
-              <p>+</p>
-              <p>Home</p>
-            </button>
-            <button id = 'today' class = 'Box'>
-              <p>+</p>
-              <p>Today</p>
-            </button>
-            <button id = 'this-week' class = 'Box'>
-              <p>+</p>
-              <p>This Week</p>
-            </button>
-            <button id = 'favorites' class = 'Box'>
-              <p>+</p>
-              <p>Favorites</p>
-            </button>
-          </div>
-          <div class = 'Projects'>
-            <div class = 'Title'>
-              <p> <strong>Projects</strong></p>
-              <button id = 'project-button'> ^ </button>
-            </div>
-            <div id = 'project-list' class = 'List'>
-              <ul>
-              </ul>
-            </div>
-          </div>
-          <div class = 'Button'><button>+</button></div>
+    <form>
+      <section>
+        <label for = 'project'> Nome do projeto: </label>
+        <input type = 'text' name = 'project' id = 'project' value = 'project'>
+      </section>
+      <section>
+        <label for = 'type'> Escolha um ícone: </label>
+        <select>
+          <option> # </option>
+          <option> * </option>
+        </select>
+        <section>
+          <input type = 'submit' id = 'submit'>
         </section>
-        <section class = 'Right Side'></section>
-      </main>
-      <dialog class = 'Dialog' open>
-        <button id = 'close-button'>X</button>
-        <form id = 'project-form'>
-            <section>
-                <label for = "name">Digite o nome do projeto: </label>
-                <input name = "name" type = "text">
-            </section>
-            <section>
-              <input id = 'project-submit' type = "submit">
-            </section>
-        </form>
-      </dialog>
+      </section>
+    </form>
+    <hr>
+
+    <h1> Projects </h1>
+    <ul class = 'Projects'></ul>
+    <div class = 'Content'></div>
 </body>
 </html>
