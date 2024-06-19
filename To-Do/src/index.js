@@ -9,8 +9,9 @@ async function DOMInteraction() {
 function startNewProject() {
 
     class Project {
-        constructor (name) {
+        constructor (name, icon) {
             this.name = name 
+            this.icon = icon
         }
     }
 
@@ -34,8 +35,7 @@ function startNewProject() {
             li.append(button)
 
             document.querySelector('ul').append(li)
-
-            projects.push(new Project(title))
+            projects.push(new Project(title, icon))
             form.reset()
 
         }
@@ -54,12 +54,23 @@ function startNewProject() {
 }
 
 function openNewProject(projects) {
+
     const pages = document.querySelectorAll('.Project-Page')
+
     const rendering = render()
     for (let i = 0; i < pages.length; i++) {
         pages[i].addEventListener('click', () =>{ 
-            rendering.project(projects[i].name)
+            Delete(document.querySelector('.Content'))
+            console.log(projects[i])
+            rendering.project(projects[i].name, projects[i].icon)
         })
+    }
+
+}
+
+function Delete(content) {
+    while (content.hasChildNodes()) {
+        content.removeChild(content.firstChild)
     }
 }
 
