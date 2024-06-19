@@ -1,8 +1,8 @@
 export function render() {
-    const content = document.querySelector('.Content')
-  
+    const content = document.querySelector('.Right')
+
     // Renderiza a página de projeto
-    const project = (name, icon) => {
+    const project = (name, icon, tasks) => {
 
         function createTitle() {
             const h1 = document.createElement('h1')
@@ -37,18 +37,29 @@ export function render() {
             const section = document.createElement('section')
             const label = document.createElement('label')
             const task = document.createElement('input')
-            
+
             const input = document.querySelector('#task')
             task.setAttribute('type', 'checkbox')
-            label.textContent = input.value 
+            label.textContent = input.value
 
             section.append(task, label)
             content.append(section)
 
+            tasks.push({ data: section, done: 0 })
+
         }
-        
+
+        function renderTask(tasks) {
+            for (let i = 0; i < tasks.length; i++) {
+                content.append(tasks[i].data)
+            }
+        }
+          
+
         createTitle()
         createInput()
+        renderTask(tasks)
+      
 
         const submit = document.querySelector('#add-task')
         submit.addEventListener('click', (e) => {
