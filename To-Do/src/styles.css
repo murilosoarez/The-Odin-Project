@@ -1,4 +1,91 @@
 main { 
     display: flex;
-    gap: 50px;
+    height: 100vh;
+    width: 100vw;
+    background: red;
+}
+
+.Left {
+    flex: 0.2;
+    border: 2px solid black;
+}
+
+.Right {
+    flex: 0.8;
+    border: 2px solid black;
+}
+
+.Dialogue {
+    display: none;
+}
+
+.Dialogue.Open {
+    position: absolute;
+    top: 35%;
+    width: 500px;
+    height: 300px;
+    display: flex;
+}
+
+.Calendar {
+    display: flex;
+    padding: 5px;
+}
+
+.Calendar > .Month {
+    width: 100vw;
+    height: 100vh;
+}
+
+.Calendar > .Month > section {
+    display: grid;
+    grid-template-columns: repeat(6, 15%);
+}
+
+.Calendar > .Month > section > div {
+    border: 2px solid black;
+    height: 150px;
+}
+
+/* DIALOG BOX */
+
+.Add {
+    display: none;
+}
+
+.Add.Open {
+    display: flex;
+    margin: 0 auto;
+    top: 40%;
+}
+
+.Window {
+    opacity: 0;
+}
+
+.Closed {
+    animation: come-out 0.5s forwards;
+}
+
+.Open {
+    animation: come-in 0.5s forwards;
+    background: white;
+}
+
+@keyframes come-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes come-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }  
 }
