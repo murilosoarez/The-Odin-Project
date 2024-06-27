@@ -39,6 +39,8 @@ export function render() {
             const input2 = document.createElement('input')
             input2.setAttribute('type', 'date')
             input2.id = 'date'
+            input2.setAttribute('min', '2024-01-01')
+            input2.setAttribute('max', '2024-12-31')
 
             const submit = document.createElement('input')
             submit.setAttribute('type', 'submit')
@@ -126,7 +128,7 @@ export function render() {
 
                 month.append(h1)
                 const section = document.createElement('section')
-                for (let day = 1; day < year[i][0].length; day++) {
+                for (let day = 1; day <= year[i][0].length; day++) {
                     const div = document.createElement('div')
                     div.innerHTML = `<p>${day}</p>`
                     let task = getTask(day, div, monthIndex)
@@ -166,7 +168,7 @@ export function render() {
                 button.innerHTML = task.project
                 const div2 = document.createElement('div2')
                 div2.className = 'Window'
-                div2.innerHTML = `TASK DO DIA: ${task.name, task.date}`
+                div2.innerHTML = `TASK DO DIA: ${task.name}`
                 div.append(button)
                 div.append(div2)
             }
@@ -176,8 +178,9 @@ export function render() {
                     // PEGANDO A DATA STRINGADA E TRANSFORMANDO EM OBJETO
                     const task = tasks[i][q]
                     const date = new Date(task.date)
-                    console.log(date, day)
-                    if (date.getDate() == day && date.getMonth() == monthIndex) { renderTask(task, date, div) }
+                    date.setDate(date.getDate() + 1)
+                    const calendary_day = date.getDate()
+                    if (calendary_day == day && date.getMonth() == monthIndex) { renderTask(task, date, div) }
                 }
             }
         }
