@@ -5,18 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do</title>
   <link rel = "stylesheet" href = "../src/styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <script defer src="main.js"></script></head>
 <body>
   <main>
     <section class = 'Left'>
-      <button class = 'Calendar'>Calendário</button>
-      <h1> Projects </h1>
+      <button class = 'Calendar-Button'>Calendário</button>
       <ul class='Projects'></ul>
       <button class = 'Toggle-Dialogue'>+</button>
     </section>
     <section class = 'Right'></section>
   </main>
   <dialog class = 'Add' open>
+    <button id = 'close'> X </button>
+    <h1>Adicione um novo projeto</h1>
     <form>
       <section>
         <label for='project'> Nome do projeto: </label>
@@ -24,10 +26,12 @@
       </section>
       <section>
         <label for='type'> Escolha um ícone: </label>
-        <select>
-          <option> # </option>
-          <option> * </option>
-        </select>
+        <div class = 'custom-select'>
+          <select>
+            <option> <img src = "#"> </option>
+            <option> * </option>
+          </select>
+        </div>
         <section>
           <input type='submit' id='submit'>
         </section>

@@ -7,8 +7,6 @@ class Task {
     }
 }
 
-
-
 export function render() {
 
     const content = document.querySelector('.Right')
@@ -16,12 +14,14 @@ export function render() {
     // Renderiza a página de projeto
     const project = (name, icon, tasks) => {
 
+        // Criar o título = nome + icon
         function createTitle() {
             const h1 = document.createElement('h1')
             h1.textContent = icon + name
             content.append(h1)
         }
 
+        // Input para inserir a task
         function createInput() {
 
             const form = document.createElement('form')
@@ -39,8 +39,6 @@ export function render() {
             const input2 = document.createElement('input')
             input2.setAttribute('type', 'date')
             input2.id = 'date'
-            input2.setAttribute('min', '2024-01-01')
-            input2.setAttribute('max', '2024-12-31')
 
             const submit = document.createElement('input')
             submit.setAttribute('type', 'submit')
@@ -53,11 +51,14 @@ export function render() {
 
         }
 
+        // Criação das tasks
         function createTask() {
 
             const section = document.createElement('section')
             const label = document.createElement('label')
             const task = document.createElement('input')
+
+            section.className = 'Task'
 
             const input = document.querySelector('#task')
             const input2 = document.querySelector('#date')
@@ -73,11 +74,9 @@ export function render() {
             task.addEventListener('click', () => {
                 label.style.textDecoration = 'line-through'
             })
-
-
-
         }
 
+        // Renderização do array com tasks
         function renderTask(tasks) {
             for (let i = 0; i < tasks.length; i++) {
                 content.append(tasks[i].section)
@@ -88,8 +87,8 @@ export function render() {
         createInput()
         renderTask(tasks)
 
-
         const submit = document.querySelector('#add-task')
+
         submit.addEventListener('click', (e) => {
             e.preventDefault()
             createTask()
@@ -98,46 +97,107 @@ export function render() {
 
     const calendar = (tasks) => {
         
-        
         function createCalendar() {
 
             const year_number = 2024
-
             const months = [['January', 31], ['February', 29], ['Mars', 31], ['April', 30], ['May', 31], ['June', 30], ['July', 31], ['August', 31], ['September', 30], ['October', 31], ['November', 30], ['December', 31]]
 
-            let entire = []
+            let month_days = []
             const year = []
 
-            for (let i = 0; i < months.length; i++) {
-                for (let day = 1; day <= months[i][1]; day++) {
-                    let date = new Date(`${months[i][0]} ${day}, ${year_number}`)
-                    entire.push(date)
+            function createMonths() {
+                for (let i = 0; i < months.length; i++) {
+                    for (let day = 1; day <= months[i][1]; day++) {
+                        let date = new Date(`${months[i][0]} ${day}, ${year_number}`)
+                        month_days.push(date)
+                    }
+                    year.push([month_days])
+                    month_days = []
                 }
-                year.push([entire])
-                entire = []
             }
 
-            for (let i = 0; i < year.length; i++) {
-                const monthName = months[i][0]
-                const month = document.createElement('div')
-                month.className = 'Month'
-                const monthIndex = i
+            function renderMonths() {
 
-                const h1 = document.createElement('h1')
-                h1.textContent = monthName
+                // Criar o nome do mês
+                function createMonth(name) {
 
-                month.append(h1)
-                const section = document.createElement('section')
-                for (let day = 1; day <= year[i][0].length; day++) {
+                    const month = document.createElement('div')
+                    const h1 = document.createElement('h1')
+
+                    month.className = 'Month'
+                    h1.textContent = name
+
+                    month.append(h1)
+                    return month
+                }
+
+                // Criar os dias dentro do mês junto com tasks
+                function createDay(day, monthIndex) {
                     const div = document.createElement('div')
                     div.innerHTML = `<p>${day}</p>`
-                    let task = getTask(day, div, monthIndex)
-                    section.append(div)
+                    getTask(day, div, monthIndex)
+                    return div
                 }
 
-                month.append(section)
-                content.append(month)
+                // Criar o calendário com base nos 365 indexes
+                for (let i = 0; i < year.length; i++) {
+
+                    const section = document.createElement('section')
+
+                    const month = createMonth(months[i][0])
+                    const monthIndex = i
+
+                    // Criar o mês com os dias
+                    for (let day = 1; day <= year[i][0].length; day++) {
+                        const day_div = createDay(day, monthIndex)
+                        section.append(day_div)   
+                    }
+
+                    month.append(section)
+                    content.append(month)
+                }
+
             }
+
+            function getTask(day, div, monthIndex) {
+
+                function renderTask(task, div) {
+
+                    function createButton() {
+                        const button = document.createElement('button')
+                        button.id = 'task'
+                        button.innerHTML = task.project
+                        return button
+                    }
+
+                    function createTaskWindow() {
+                        const window = document.createElement('div2')
+                        window.className = 'Window'
+                        window.innerHTML = `TASK DO DIA: ${task.name}`
+                        return window
+                    }
+
+                    const button = createButton()
+                    const window = createTaskWindow()
+
+                    div.append(button, window)
+
+                }
+                // Loop para renderizar as tasks com base na data
+                for (let i = 0; i < tasks.length; i++) {
+                    for (let q = 0; q < tasks[i].length; q++) {
+                        const task = tasks[i][q]
+                        const date = new Date(task.date)
+                        const calendary_day = date.getDate(date.setDate(date.getDate() + 1))
+                        // Verifica se a data no calendário bate com a task (mês, dia)
+                        if (calendary_day == day && date.getMonth() == monthIndex) { renderTask(task, div) }
+                    }
+                }
+            }
+
+            createMonths() // Guarda os meses em array
+            renderMonths() // Renderiza os meses em tela + junto com as tasks
+
         }
 
         function hoverTask() {
@@ -158,31 +218,6 @@ export function render() {
                     })
                 })
             })
-        }
-
-        function getTask(day, div, monthIndex) {
-
-            function renderTask(task, date, div) {
-                const button = document.createElement('button')
-                button.id = 'task'
-                button.innerHTML = task.project
-                const div2 = document.createElement('div2')
-                div2.className = 'Window'
-                div2.innerHTML = `TASK DO DIA: ${task.name}`
-                div.append(button)
-                div.append(div2)
-            }
-
-            for (let i = 0; i < tasks.length; i++) {
-                for (let q = 0; q < tasks[i].length; q++) {
-                    // PEGANDO A DATA STRINGADA E TRANSFORMANDO EM OBJETO
-                    const task = tasks[i][q]
-                    const date = new Date(task.date)
-                    date.setDate(date.getDate() + 1)
-                    const calendary_day = date.getDate()
-                    if (calendary_day == day && date.getMonth() == monthIndex) { renderTask(task, date, div) }
-                }
-            }
         }
 
         createCalendar()

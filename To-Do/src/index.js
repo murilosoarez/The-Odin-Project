@@ -3,25 +3,54 @@ import { render } from './modules/render'
 var projects = []
 
 async function DOMInteraction() {
-    startNewProject()
-    toggleDialogue()
+    createTitle()
+    activateDialogue()
+
+    openProject()
     openCalendar()
 }
 
-function toggleDialogue() {
-    const toggle = document.querySelector('.Toggle-Dialogue')
-    const dialog = document.querySelector('.Add')
-    toggle.addEventListener('click', () => {
-        dialog.classList.toggle('Open')
-    })
+
+function createTitle() {
+    const ul = document.querySelector('ul')
+    const h1 = document.createElement('h1')
+    h1.textContent = 'Projects'
+    ul.append(h1)
 }
+
+
+function activateDialogue() {
+
+    const toggle = document.querySelector('.Toggle-Dialogue')
+    const close = document.querySelector('#close')
+    const dialog = document.querySelector('.Add')
+    const main = document.querySelector('main')
+
+    toggle.addEventListener('click', () => {
+        if (!(dialog.className.includes('Open'))) {
+            dialog.classList.add('Open')
+        }
+        main.style.filter = 'blur(5px)'
+    })
+    
+    close.addEventListener('click', () => {
+        if (dialog.className.includes('Open')) {
+            dialog.classList.remove('Open')
+            main.style.filter = 'blur(0px)'
+        }
+    })
+
+}
+
 
 function closeDialogue() {
     const dialog = document.querySelector('.Add')
+    const main = document.querySelector('main')
     dialog.classList.remove('Open')
+    main.style.filter = 'blur(0px)'
 }
 
-function startNewProject() {
+function openProject() {
 
     class Project {
         constructor(name, icon, tasks = []) {
@@ -64,6 +93,7 @@ function startNewProject() {
     const submit = document.querySelector('#submit')
     submit.addEventListener('click', (e) => {
         e.preventDefault()
+        closeDialogue()
         getProjectForm()
     })
 
@@ -79,7 +109,6 @@ function openNewProject(projects) {
 
         pages[i].addEventListener('click', () => {
             deleteContent(content)
-            closeDialogue()
             content.classList.remove('Calendar')
             rendering.project(projects[i].name, projects[i].icon, projects[i].tasks)
         })
@@ -90,17 +119,12 @@ function openNewProject(projects) {
 
 function openCalendar() {
 
-    const calendar = document.querySelector('.Calendar')
+    const calendar = document.querySelector('.Calendar-Button')
     const content = document.querySelector('.Right')
     const rendering = render()
     
     calendar.addEventListener('click', () => {
-        deleteContent(content)
-        closeDialogue()
-        // GETTING THE TASKS
-        const pages = document.querySelectorAll('.Project-Page')
         const tasks = []
-
         for (let i = 0; i < projects.length; i++) {
             tasks.push(projects[i].tasks)
         }
@@ -114,7 +138,5 @@ function deleteContent(content) {
         content.removeChild(content.firstChild)
     }
 }
-
-
 
 document.addEventListener('DOMContentLoaded', DOMInteraction)
