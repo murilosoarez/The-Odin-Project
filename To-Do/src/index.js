@@ -3,20 +3,11 @@ import { render } from './modules/render'
 var projects = []
 
 async function DOMInteraction() {
-    createTitle()
     activateDialogue()
-
     openProject()
     openCalendar()
 }
 
-
-function createTitle() {
-    const ul = document.querySelector('ul')
-    const h1 = document.createElement('h1')
-    h1.textContent = 'Projects'
-    ul.append(h1)
-}
 
 
 function activateDialogue() {
@@ -25,7 +16,7 @@ function activateDialogue() {
     const close = document.querySelector('#close')
     const dialog = document.querySelector('.Add')
     const main = document.querySelector('main')
-
+    
     toggle.addEventListener('click', () => {
         if (!(dialog.className.includes('Open'))) {
             dialog.classList.add('Open')

@@ -1,244 +1,54 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 :root {
-    --background: black;
-    --main-color: rgb(0, 18, 39);
-    --secondary-color: rgb(223, 104, 0);
-    --hover-main-color: rgb(31, 31, 31);
+    --green: rgb(124, 242, 124);
+    --soft-black: rgb(29, 29, 29);
 }
 
 body {
-    background: black;
-    font-family: 'Arial';
-}
-
-main {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    background: var(--main-color);
-    border: 2px solid white;
-    color: white;
-}
-
-/* ========== LADO ESQUERDO ========== */
-
-.Left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    flex: 0.2;
-    border: 2px solid var(--secondary-color);
-    padding: 50px;
-}
-
-.Left .Calendar-Button {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bolder;
-    font-size: 20px;
-    width: 90%;
-    height: 10%;
-    color: white;
-    background: none;
-    border: 1px solid white;
-    background: black;
-}
-
-.Left .Calendar-Button:hover {
-    background: var(--hover-main-color);
-    cursor: pointer;
-}
-
-.Left>ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-}
-
-.Left>ul>h1 {
-    display: flex;
-    align-self: center;
-    margin-right: 25px;
-    background: black;
-}
-
-.Left>ul>li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    list-style-type: None;
-    margin-right: 25px;
-    width: 100%;
-    font-weight: bolder;
-    color: var(--secondary-color)
-}
-
-.Left>ul>li>button {
-    background: black;
-    color: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
-    padding: 10px;
-}
-
-.Left>ul>li>button:hover {
-    background: var(--hover-main-color);
-    cursor: pointer;
-    color: white;
-    border: 1px solid white;
-}
-
-.Left .Toggle-Dialogue {
-    width: 60%;
-    height: 5%;
-    font-size: 25px;
-    color: white;
-    border: 2px solid white;
-    background: black;
-}
-
-.Left .Toggle-Dialogue:hover {
-    background: var(--hover-main-color);
-    cursor: pointer;
-}
-
-/* ============ RIGHT ============ */
-
-.Right {
-    flex: 0.8;
-    border: 2px solid black;
-}
-
-/* ==== CALENDAR ==== */
-
-.Right.Calendar {
-    display: flex;
-    padding: 5px;
-}
-
-.Calendar>.Month {
-    width: 100vw;
     height: 100vh;
 }
 
-.Calendar>.Month>section {
-    display: grid;
-    grid-template-columns: repeat(7, 10%);
-    background: var(--hover-main-color);
-    padding: 10px;
+main {
+    padding: 5%;
+    border: 2px solid black;
+    height: 80vh;
+    width: 65vw;
 }
 
-.Calendar>.Month>section>div {
-    border: 2px solid var(--secondary-color);
-    height: 150px;
-}
+/* ===== ADD PROJECT DIALOGUE ====== */
 
-/* ======= PROJECTS ====== */
+/* === BUTTON === */
 
-.Right {
-    padding: 10px;
-}
-
-.Right>h1 {
-    display: flex;
-    letter-spacing: 10px;
-    color: var(--secondary-color);
-    font-weight: 100;
-}
-
-.Right>form {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.Right>form>section {
-    display: flex;
-    flex-direction: column;
-}
-
-.Right>form>#add-task {
-    width: 51%;
-    height: 50px;
-    background: black;
-    border: 2px solid var(--secondary-color);
-    color: white;
-}
-
-.Right>form>#add-task:hover {
-    background: var(--hover-main-color);
-    cursor: pointer;
-}
-
-.Right>form>section>label {
-    font-size: 15px;
-    font-weight: 100;
-    letter-spacing: 5px
-}
-
-.Right>form>section>input {
-    height: 25px;
-    width: 50%;
-    border: 2px solid var(--secondary-color);
-    background: black;
-    color: white;
-    outline: none;
-}
-
-
-.Right .Task {
+.Toggle-Dialogue {
     display: flex;
     align-items: center;
-    margin-top: 10px;
-    gap: 5px;
+    justify-content: center;
+    position: absolute;
+    bottom: 2.5%;
+    right: 2.5%;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 1px dotted var(--green);
+    font-size: 50px;
+    background: var(--soft-black);
+    color: var(--green);
 }
 
-.Right .Task>label {
-    color: var(--secondary-color)
-}
-
-
-.Right .Task>input[type="checkbox"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 4px;
-    position: relative;
+.Toggle-Dialogue:hover {
+    background: black;
     cursor: pointer;
 }
 
-.Right .Task>input[type="checkbox"]:checked {
-    background: var(--hover-main-color);
-}
-
-.Right .Task>input[type="checkbox"]:checked::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 6px;
-    width: 5px;
-    height: 10px;
-    border: 1px solid var(--secondary-color);
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.Dialogue {
-    display: none;
-}
-
-.Dialogue.Open {
-    position: absolute;
-    top: 35%;
-    width: 500px;
-    height: 300px;
-    display: flex;
-}
-
-/* DIALOG BOX */
+/* == DIALOGUE BOX == */
 
 .Add {
     display: none;
@@ -247,147 +57,85 @@ main {
 .Add.Open {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    top: 40%;
-    border: 2px solid var(--secondary-color);
-    background: var(--hover-main-color);
-}
-
-.Add.Open > #close {
     position: absolute;
-    top: -20px;
-    right: -10px;
-    width: 50px;
-    height: 50px;
-    outline: none;
-    border-radius: 20px;
-    background-color: black;
-    border: 2px solid white;
-    color: white;
+    margin: 0 auto;
+    width: 30%;
+    height: 50%;
+    background: rgb(29, 29, 29);
+    border: 2px solid var(--green);
+    transition: linear 1s;
 }
 
-.Add.Open > #close:hover {
-    background-color: var(--hover-main-color);
-    color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
-    cursor: pointer;
-}
-
-.Add.Open > h1 {
-    color: var(--secondary-color);
-}
-
-.Add.Open > form {
+.Add > form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
-.Add.Open > form > section:nth-child(1) {
+.Add > form > section {
     display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    font-weight: 100;
-    color: var(--secondary-color);
-    font-weight: bolder;
+    align-items: center;
+    gap: 15px;
+    width: 90%;
+    height: 30%;
 }
 
-.Add.Open > form > section:nth-child(1) > input {
-    width: 60%;
-    height: 30px;
-    font-weight: 100;
-    font-size: 18.5px;
+.Add > form > section > label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    height: 55%;
+    width: 25%;
+    background: var(--green);
+}
+
+.Add > form > section > input {
+    width: 80%;
+    height: 50%;
     padding: 5px;
-    border-radius: 3px;
-    background: black;
-    border: 1px solid white;
-    color: white;
-}
-
-.Add.Open > form > section:nth-child(1) > input:focus {
-    background: var(--hover-main-color);
-    border: 2px solid var(--secondary-color);
+    font-size: 20px;
     outline: none;
+    border: none;
+    border-bottom: 1px solid var(--green);
+    color: var(--green);
+    background: none;
 }
 
-.Add.Open > form > section:nth-child(2) {
-    display: flex; 
-    flex-direction: column;
-    color: var(--secondary-color);
-    font-weight: bolder;
+.Add > form > section:nth-child(2) > select {
+    width: 80%;
+    height: 50%;
+    font-size: 20px;
+    background: none;
+    padding: 5px;
+    border: 1px solid var(--green);
+    color: var(--green);
 }
 
-.Add.Open > form > section:nth-child(2) > :nth-child(3) > * {
-    margin-top: 20px;
-    height: 50px;
+.Add > form > section:nth-child(3) > input {
+    width: 50%;
+    height: 50%;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 35px;
+    border: 1px solid var(--green);
+    color: var(--green);
     background: black;
-    border: 2px solid white;
-    outline: none;
-    color: white;
 }
 
-.Add.Open > form > section:nth-child(2) > :nth-child(3) > *:hover {
-    background: var(--hover-main-color);
-    color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
-    cursor: pointer;
-}
-
-.custom-select {
-    display: inline-block;
-    position: relative;
-    width: 200px;
-}
-
-.custom-select select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid white;
-    border-radius: 4px;
-    background-color: black;
-    color: white;
-}
-
-.custom-select select:focus {
-    background: var(--hover-main-color);
-    border: 2px solid var(--secondary-color)
-}
-
-
-
-.Window {
-    opacity: 0;
-}
-
-.Closed {
-    animation: come-out 0.5s forwards;
-}
-
-.Open {
-    animation: come-in 0.5s forwards;
-    background: white;
-}
-
-@keyframes come-in {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1
-    }
-}
-
-@keyframes come-out {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
+.Add > #close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px; 
+    height: 30px;
+    border: 2px dotted var(--green);
+    border-radius: 25px;
+    color: var(--green);
+    background: black;
 }
