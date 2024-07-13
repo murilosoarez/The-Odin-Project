@@ -9,7 +9,7 @@ class Task {
 
 export function render() {
 
-    const content = document.querySelector('.Right')
+    const content = document.querySelector('main')
 
     // Renderiza a página de projeto
     const project = (name, icon, tasks) => {
@@ -17,7 +17,7 @@ export function render() {
         // Criar o título = nome + icon
         function createTitle() {
             const h1 = document.createElement('h1')
-            h1.textContent = icon + name
+            h1.textContent = icon + ' ' + name
             content.append(h1)
         }
 
@@ -43,6 +43,7 @@ export function render() {
             const submit = document.createElement('input')
             submit.setAttribute('type', 'submit')
             submit.id = 'add-task'
+            submit.setAttribute('value', 'Add')
 
             section.append(label, input)
             section2.append(label2, input2)
@@ -60,13 +61,21 @@ export function render() {
 
             section.className = 'Task'
 
+            const div_task = document.createElement('div')
+            div_task.id = 'task-container'
+
             const input = document.querySelector('#task')
             const input2 = document.querySelector('#date')
 
             task.setAttribute('type', 'checkbox')
+            const close = document.createElement('span')
+            close.className = 'checkmark'
+            close.innerHTML = 'X'
+
+            div_task.append(task, label)
             label.textContent = input.value
 
-            section.append(task, label)
+            section.append(div_task, close)
             content.append(section)
 
             tasks.push(new Task(name, input.value, input2.value, section))

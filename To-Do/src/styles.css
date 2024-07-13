@@ -14,6 +14,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: var(--soft-black);
 }
 
 main {
@@ -138,4 +139,129 @@ main {
     border-radius: 25px;
     color: var(--green);
     background: black;
+}
+
+/* ====== PANEL ====== */
+
+.Panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 5%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: black;
+    position: absolute;
+}
+
+.Panel > ul {
+    width: 90%;
+    height: 80px;
+}
+
+.Panel > ul > li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green);
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+}
+
+.Panel > ul > li > button {
+    width: 100%;
+    height: 100%;
+    font-size: 25px;
+    background: none;
+    border: none;
+}
+
+/* === PROJECT PAGE === */
+
+main {  
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: black;
+    color: var(--green);
+    overflow: scroll;
+}
+
+main >  h1 {
+    display: flex;
+    font-weight: bolder;
+    text-shadow: 2px 2px white;
+}
+
+main > form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    position: relative;
+}
+
+main > form > section {
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+    color: var(--green)
+}
+
+main > form > section > input {
+    width: 50%;
+    height: 50px;
+    font-size: 15px;
+    outline: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--green);
+    color: var(--green);
+}
+
+main > form  > #add-task {
+    position: absolute;
+    right: 10%;
+    top: 0px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+main  > .Task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    gap: 5px;
+}
+
+main > .Task > .checkmark {
+    color: var(--soft-black);
+}
+
+main > .Task > .checkmark:hover {
+    color: red;
+    cursor: pointer;
+}
+
+main > .Task > #task-container > input {
+    opacity: 1;
+}
+
+/* ====== CALENDAR ===== */
+
+.Calendar > .Month > section {
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: repeat(5, 1fr); 
+}
+
+.Calendar > .Month > section > div {
+    padding: 10px;
+    height: 100px;
+    border: 1px dotted var(--green)
 }

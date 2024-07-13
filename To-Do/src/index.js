@@ -61,21 +61,20 @@ function openProject() {
             const icon = document.querySelector('select').value
 
             const li = document.createElement('li')
-            li.textContent = icon
 
             const button = document.createElement('button')
             button.className = 'Project-Page'
             button.id = title
-            button.innerHTML = title
+            button.innerHTML = icon
 
             li.append(button)
 
             document.querySelector('ul').append(li)
             projects.push(new Project(title, icon))
             form.reset()
-
+            
         }
-
+        
         addNewProject()
         openNewProject(projects)
 
@@ -93,14 +92,13 @@ function openProject() {
 function openNewProject(projects) {
 
     const pages = document.querySelectorAll('.Project-Page')
-    const content = document.querySelector('.Right')
+    const content = document.querySelector('main')
     const rendering = render()
 
     for (let i = 0; i < pages.length; i++) {
-
         pages[i].addEventListener('click', () => {
             deleteContent(content)
-            content.classList.remove('Calendar')
+            // content.classList.remove('Calendar')
             rendering.project(projects[i].name, projects[i].icon, projects[i].tasks)
         })
 
@@ -111,10 +109,11 @@ function openNewProject(projects) {
 function openCalendar() {
 
     const calendar = document.querySelector('.Calendar-Button')
-    const content = document.querySelector('.Right')
+    const content = document.querySelector('main')
     const rendering = render()
     
     calendar.addEventListener('click', () => {
+        deleteContent(content)
         const tasks = []
         for (let i = 0; i < projects.length; i++) {
             tasks.push(projects[i].tasks)
